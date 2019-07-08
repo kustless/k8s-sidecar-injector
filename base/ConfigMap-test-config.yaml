@@ -1,0 +1,9 @@
+# configmap to test sharing a volume between sidecar and existing container
+apiVersion: v1
+kind: ConfigMap
+metadata:
+  name: test-config
+  namespace: default
+data:
+  test.txt: |
+    this is some test message shared between containers

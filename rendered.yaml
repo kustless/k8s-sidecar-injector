@@ -1,0 +1,234 @@
+apiVersion: admissionregistration.k8s.io/v1beta1
+kind: MutatingWebhookConfiguration
+metadata:
+  labels:
+    app: k8s-sidecar-injector
+    track: prod
+  name: tumblr-sidecar-injector-webhook
+webhooks:
+- clientConfig:
+    caBundle: '!!! your base64 encoded cabundle here !!!'
+    service:
+      name: k8s-sidecar-injector-prod
+      namespace: kube-system
+      path: /mutate
+  failurePolicy: Ignore
+  name: injector.tumblr.com
+  rules:
+  - apiGroups:
+    - ""
+    apiVersions:
+    - v1
+    operations:
+    - CREATE
+    resources:
+    - pods
+---
+apiVersion: v1
+kind: ServiceAccount
+metadata:
+  labels:
+    addonmanager.kubernetes.io/mode: Reconcile
+    kubernetes.io/cluster-service: "true"
+  name: k8s-sidecar-injector
+  namespace: kube-system
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRole
+metadata:
+  name: k8s-sidecar-injector
+rules:
+- apiGroups:
+  - ""
+  resources:
+  - configmaps
+  verbs:
+  - get
+  - watch
+  - list
+---
+apiVersion: rbac.authorization.k8s.io/v1
+kind: ClusterRoleBinding
+metadata:
+  name: k8s-sidecar-injector
+roleRef:
+  apiGroup: rbac.authorization.k8s.io
+  kind: ClusterRole
+  name: k8s-sidecar-injector
+subjects:
+- kind: ServiceAccount
+  name: k8s-sidecar-injector
+  namespace: kube-system
+---
+apiVersion: v1
+data:
+  test.txt: |
+    this is some test message shared between containers
+kind: ConfigMap
+metadata:
+  name: test-config
+  namespace: default
+---
+apiVersion: v1
+data:
+  test1: |
+    name: test1
+    env:
+      - name: HELLO
+        value: world
+      - name: TEST
+        value: test_that
+    volumeMounts:
+    - name: test-vol
+      mountPath: /tmp/test
+    volumes:
+    - name: test-vol
+      configMap:
+        name: test-config
+    containers:
+    - name: sidecar-nginx
+      image: nginx:1.12.2
+      imagePullPolicy: IfNotPresent
+      ports:
+      - containerPort: 80
+      env:
+        - name: ENV_IN_SIDECAR
+          value: test-in-sidecar
+kind: ConfigMap
+metadata:
+  labels:
+    app: k8s-sidecar-injector
+    track: test
+  name: sidecar-test
+  namespace: kube-system
+---
+apiVersion: v1
+kind: Service
+metadata:
+  labels:
+    k8s-app: k8s-sidecar-injector
+    track: prod
+  name: k8s-sidecar-injector-prod
+  namespace: kube-system
+spec:
+  ports:
+  - name: https
+    port: 443
+    protocol: TCP
+    targetPort: https
+  - name: http-metrics
+    port: 80
+    protocol: TCP
+    targetPort: http-metrics
+  selector:
+    k8s-app: k8s-sidecar-injector
+    track: prod
+  type: ClusterIP
+---
+apiVersion: extensions/v1beta1
+kind: Deployment
+metadata:
+  labels:
+    k8s-app: k8s-sidecar-injector
+    track: prod
+  name: k8s-sidecar-injector-prod
+  namespace: kube-system
+spec:
+  replicas: 2
+  strategy:
+    rollingUpdate:
+      maxSurge: 1
+      maxUnavailable: 0
+    type: RollingUpdate
+  template:
+    metadata:
+      labels:
+        k8s-app: k8s-sidecar-injector
+        track: prod
+    spec:
+      containers:
+      - args: []
+        command:
+        - entrypoint.sh
+        env:
+        - name: TLS_CERT_FILE
+          value: /var/lib/secrets/sidecar-injector.crt
+        - name: TLS_KEY_FILE
+          value: /var/lib/secrets/sidecar-injector.key
+        - name: LOG_LEVEL
+          value: "2"
+        - name: CONFIG_DIR
+          value: conf/
+        - name: CONFIGMAP_LABELS
+          value: app=k8s-sidecar-injector
+        image: tumblr/k8s-sidecar-injector:latest
+        imagePullPolicy: Always
+        livenessProbe:
+          httpGet:
+            path: /health
+            port: https
+            scheme: HTTPS
+          initialDelaySeconds: 10
+          periodSeconds: 10
+          timeoutSeconds: 3
+        name: k8s-sidecar-injector
+        ports:
+        - containerPort: 9443
+          name: https
+        - containerPort: 9000
+          name: http-metrics
+        resources:
+          limits:
+            cpu: "0.5"
+            memory: 2Gi
+          requests:
+            cpu: "0.5"
+            memory: 1Gi
+        volumeMounts:
+        - mountPath: /var/lib/secrets
+          name: secrets
+      serviceAccountName: k8s-sidecar-injector
+      volumes:
+      - name: secrets
+        secret:
+          secretName: k8s-sidecar-injector
+---
+apiVersion: monitoring.coreos.com/v1
+kind: ServiceMonitor
+metadata:
+  labels:
+    k8s-app: k8s-sidecar-injector
+    track: prod
+  name: k8s-sidecar-injector-prod
+  namespace: kube-system
+spec:
+  endpoints:
+  - honorLabels: true
+    interval: 30s
+    path: /metrics
+    port: http-metrics
+  jobLabel: k8s-app
+  namespaceSelector:
+    matchNames:
+    - kube-system
+  selector:
+    matchLabels:
+      k8s-app: k8s-sidecar-injector
+      track: prod
+---
+apiVersion: v1
+kind: Pod
+metadata:
+  annotations:
+    injector.tumblr.com/request: test1
+  name: debian-debug
+  namespace: default
+spec:
+  containers:
+  - command:
+    - sleep
+    - "3600"
+    image: debian:jessie
+    imagePullPolicy: IfNotPresent
+    name: debian-debug
+  restartPolicy: Never

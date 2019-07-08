@@ -1,0 +1,13 @@
+kind: ""
+apiversion: ""
+resources:
+- ConfigMap-sidecar-test-kube-system.yaml
+- ConfigMap-test-config.yaml
+- clusterrole.yaml
+- clusterrolebinding.yaml
+- debug-pod.yaml
+- deployment.yaml
+- mutating-webhook-configuration.yaml
+- service-monitor.yaml
+- service.yaml
+- serviceaccount.yaml

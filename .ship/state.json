@@ -1,0 +1,84 @@
+{
+  "v1": {
+    "config": null,
+    "releaseName": "ship",
+    "kustomize": {
+      "overlays": {
+        "ship": {
+          "excludedBases": [
+            "/namespace.yaml"
+          ]
+        }
+      }
+    },
+    "upstream": "github.com/tumblr/k8s-sidecar-injector/examples/kubernetes",
+    "upstreamContents": {
+      "upstreamFiles": [
+        {
+          "filePath": "clusterrole.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogcmJhYy5hdXRob3JpemF0aW9uLms4cy5pby92MQpraW5kOiBDbHVzdGVyUm9sZQptZXRhZGF0YToKICBuYW1lOiBrOHMtc2lkZWNhci1pbmplY3RvcgpydWxlczoKLSBhcGlHcm91cHM6IFsiIl0KICByZXNvdXJjZXM6IFsiY29uZmlnbWFwcyJdCiAgdmVyYnM6IFsiZ2V0Iiwid2F0Y2giLCJsaXN0Il0K"
+        },
+        {
+          "filePath": "clusterrolebinding.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogcmJhYy5hdXRob3JpemF0aW9uLms4cy5pby92MQpraW5kOiBDbHVzdGVyUm9sZUJpbmRpbmcKbWV0YWRhdGE6CiAgbmFtZTogazhzLXNpZGVjYXItaW5qZWN0b3IKc3ViamVjdHM6CiAgLSBraW5kOiBTZXJ2aWNlQWNjb3VudAogICAgbmFtZTogazhzLXNpZGVjYXItaW5qZWN0b3IKICAgIG5hbWVzcGFjZToga3ViZS1zeXN0ZW0Kcm9sZVJlZjoKICBraW5kOiBDbHVzdGVyUm9sZQogIG5hbWU6IGs4cy1zaWRlY2FyLWluamVjdG9yCiAgYXBpR3JvdXA6IHJiYWMuYXV0aG9yaXphdGlvbi5rOHMuaW8K"
+        },
+        {
+          "filePath": "configmap-sidecar-test.yaml",
+          "fileContents": "LS0tCmFwaVZlcnNpb246IHYxCmtpbmQ6IENvbmZpZ01hcAptZXRhZGF0YToKICBuYW1lOiBzaWRlY2FyLXRlc3QKICBuYW1lc3BhY2U6IGt1YmUtc3lzdGVtCiAgbGFiZWxzOgogICAgYXBwOiBrOHMtc2lkZWNhci1pbmplY3RvcgogICAgdHJhY2s6IHRlc3QKZGF0YToKICB0ZXN0MTogfAogICAgbmFtZTogdGVzdDEKICAgIGVudjoKICAgICAgLSBuYW1lOiBIRUxMTwogICAgICAgIHZhbHVlOiB3b3JsZAogICAgICAtIG5hbWU6IFRFU1QKICAgICAgICB2YWx1ZTogdGVzdF90aGF0CiAgICB2b2x1bWVNb3VudHM6CiAgICAtIG5hbWU6IHRlc3Qtdm9sCiAgICAgIG1vdW50UGF0aDogL3RtcC90ZXN0CiAgICB2b2x1bWVzOgogICAgLSBuYW1lOiB0ZXN0LXZvbAogICAgICBjb25maWdNYXA6CiAgICAgICAgbmFtZTogdGVzdC1jb25maWcKICAgIGNvbnRhaW5lcnM6CiAgICAtIG5hbWU6IHNpZGVjYXItbmdpbngKICAgICAgaW1hZ2U6IG5naW54OjEuMTIuMgogICAgICBpbWFnZVB1bGxQb2xpY3k6IElmTm90UHJlc2VudAogICAgICBwb3J0czoKICAgICAgLSBjb250YWluZXJQb3J0OiA4MAogICAgICBlbnY6CiAgICAgICAgLSBuYW1lOiBFTlZfSU5fU0lERUNBUgogICAgICAgICAgdmFsdWU6IHRlc3QtaW4tc2lkZWNhcgotLS0KIyBjb25maWdtYXAgdG8gdGVzdCBzaGFyaW5nIGEgdm9sdW1lIGJldHdlZW4gc2lkZWNhciBhbmQgZXhpc3RpbmcgY29udGFpbmVyCmFwaVZlcnNpb246IHYxCmtpbmQ6IENvbmZpZ01hcAptZXRhZGF0YToKICBuYW1lOiB0ZXN0LWNvbmZpZwogIG5hbWVzcGFjZTogZGVmYXVsdApkYXRhOgogIHRlc3QudHh0OiB8CiAgICB0aGlzIGlzIHNvbWUgdGVzdCBtZXNzYWdlIHNoYXJlZCBiZXR3ZWVuIGNvbnRhaW5lcnMK"
+        },
+        {
+          "filePath": "debug-pod.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogdjEKa2luZDogUG9kCm1ldGFkYXRhOgogIG5hbWU6IGRlYmlhbi1kZWJ1ZwogIG5hbWVzcGFjZTogZGVmYXVsdAogIGFubm90YXRpb25zOgogICAgaW5qZWN0b3IudHVtYmxyLmNvbS9yZXF1ZXN0OiB0ZXN0MQpzcGVjOgogIGNvbnRhaW5lcnM6CiAgLSBpbWFnZTogZGViaWFuOmplc3NpZQogICAgY29tbWFuZDoKICAgICAgLSBzbGVlcAogICAgICAtICIzNjAwIgogICAgaW1hZ2VQdWxsUG9saWN5OiBJZk5vdFByZXNlbnQKICAgIG5hbWU6IGRlYmlhbi1kZWJ1ZwogIHJlc3RhcnRQb2xpY3k6IE5ldmVyCg=="
+        },
+        {
+          "filePath": "deployment.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogZXh0ZW5zaW9ucy92MWJldGExCmtpbmQ6IERlcGxveW1lbnQKbWV0YWRhdGE6CiAgbmFtZTogIms4cy1zaWRlY2FyLWluamVjdG9yLXByb2QiCiAgbmFtZXNwYWNlOiAia3ViZS1zeXN0ZW0iCiAgbGFiZWxzOgogICAgazhzLWFwcDogIms4cy1zaWRlY2FyLWluamVjdG9yIgogICAgdHJhY2s6ICJwcm9kIgpzcGVjOgogIHJlcGxpY2FzOiAyCiAgc3RyYXRlZ3k6CiAgICB0eXBlOiBSb2xsaW5nVXBkYXRlCiAgICByb2xsaW5nVXBkYXRlOgogICAgICBtYXhTdXJnZTogMQogICAgICBtYXhVbmF2YWlsYWJsZTogMAogIHRlbXBsYXRlOgogICAgbWV0YWRhdGE6CiAgICAgIGxhYmVsczoKICAgICAgICBrOHMtYXBwOiAiazhzLXNpZGVjYXItaW5qZWN0b3IiCiAgICAgICAgdHJhY2s6ICJwcm9kIgogICAgc3BlYzoKICAgICAgc2VydmljZUFjY291bnROYW1lOiBrOHMtc2lkZWNhci1pbmplY3RvcgogICAgICB2b2x1bWVzOgogICAgICAtIG5hbWU6IHNlY3JldHMKICAgICAgICBzZWNyZXQ6CiAgICAgICAgICBzZWNyZXROYW1lOiBrOHMtc2lkZWNhci1pbmplY3RvcgogICAgICBjb250YWluZXJzOgogICAgICAtIG5hbWU6ICJrOHMtc2lkZWNhci1pbmplY3RvciIKICAgICAgICBpbWFnZVB1bGxQb2xpY3k6IEFsd2F5cwogICAgICAgIGltYWdlOiB0dW1ibHIvazhzLXNpZGVjYXItaW5qZWN0b3I6bGF0ZXN0CiAgICAgICAgY29tbWFuZDogWyJlbnRyeXBvaW50LnNoIl0KICAgICAgICBhcmdzOiBbXQogICAgICAgIHBvcnRzOgogICAgICAgIC0gbmFtZTogaHR0cHMKICAgICAgICAgIGNvbnRhaW5lclBvcnQ6IDk0NDMKICAgICAgICAtIG5hbWU6IGh0dHAtbWV0cmljcwogICAgICAgICAgY29udGFpbmVyUG9ydDogOTAwMAogICAgICAgIHZvbHVtZU1vdW50czoKICAgICAgICAtIG5hbWU6IHNlY3JldHMKICAgICAgICAgIG1vdW50UGF0aDogL3Zhci9saWIvc2VjcmV0cwogICAgICAgIGxpdmVuZXNzUHJvYmU6CiAgICAgICAgICBodHRwR2V0OgogICAgICAgICAgICBzY2hlbWU6IEhUVFBTCiAgICAgICAgICAgIHBhdGg6IC9oZWFsdGgKICAgICAgICAgICAgcG9ydDogaHR0cHMKICAgICAgICAgIGluaXRpYWxEZWxheVNlY29uZHM6IDEwCiAgICAgICAgICBwZXJpb2RTZWNvbmRzOiAxMAogICAgICAgICAgdGltZW91dFNlY29uZHM6IDMKICAgICAgICByZXNvdXJjZXM6CiAgICAgICAgICByZXF1ZXN0czoKICAgICAgICAgICAgY3B1OiAiMC41IgogICAgICAgICAgICBtZW1vcnk6IDFHaQogICAgICAgICAgbGltaXRzOgogICAgICAgICAgICBjcHU6ICIwLjUiCiAgICAgICAgICAgIG1lbW9yeTogMkdpCiAgICAgICAgZW52OgogICAgICAgIC0gbmFtZTogIlRMU19DRVJUX0ZJTEUiCiAgICAgICAgICB2YWx1ZTogIi92YXIvbGliL3NlY3JldHMvc2lkZWNhci1pbmplY3Rvci5jcnQiCiAgICAgICAgLSBuYW1lOiAiVExTX0tFWV9GSUxFIgogICAgICAgICAgdmFsdWU6ICIvdmFyL2xpYi9zZWNyZXRzL3NpZGVjYXItaW5qZWN0b3Iua2V5IgogICAgICAgIC0gbmFtZTogIkxPR19MRVZFTCIKICAgICAgICAgIHZhbHVlOiAiMiIKICAgICAgICAtIG5hbWU6ICJDT05GSUdfRElSIgogICAgICAgICAgdmFsdWU6ICJjb25mLyIKICAgICAgICAtIG5hbWU6ICJDT05GSUdNQVBfTEFCRUxTIgogICAgICAgICAgdmFsdWU6ICJhcHA9azhzLXNpZGVjYXItaW5qZWN0b3IiCg=="
+        },
+        {
+          "filePath": "mutating-webhook-configuration.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogYWRtaXNzaW9ucmVnaXN0cmF0aW9uLms4cy5pby92MWJldGExCmtpbmQ6IE11dGF0aW5nV2ViaG9va0NvbmZpZ3VyYXRpb24KbWV0YWRhdGE6CiAgbmFtZTogInR1bWJsci1zaWRlY2FyLWluamVjdG9yLXdlYmhvb2siCiAgbGFiZWxzOgogICAgYXBwOiBrOHMtc2lkZWNhci1pbmplY3RvcgogICAgdHJhY2s6IHByb2QKd2ViaG9va3M6Ci0gbmFtZTogImluamVjdG9yLnR1bWJsci5jb20iCiAgZmFpbHVyZVBvbGljeTogIklnbm9yZSIgIyB3ZSBmYWlsICJvcGVuIiBpZiB0aGUgd2ViaG9vayBpcyBkb3duIGhhcmQKICBydWxlczoKICAtIG9wZXJhdGlvbnM6IFsgIkNSRUFURSIgXQogICAgYXBpR3JvdXBzOiBbIiJdCiAgICBhcGlWZXJzaW9uczogWyJ2MSJdCiAgICByZXNvdXJjZXM6IFsicG9kcyJdCiAgY2xpZW50Q29uZmlnOgogICAgIyBodHRwczovL2dpdGh1Yi5jb20va3ViZXJuZXRlcy9rdWJlcm5ldGVzL2Jsb2IvdjEuMTAuMC1iZXRhLjEvc3RhZ2luZy9zcmMvazhzLmlvL2FwaS9hZG1pc3Npb25yZWdpc3RyYXRpb24vdjFiZXRhMS90eXBlcy5nbyNMMjE4CiAgICAjIG5vdGU6IGs4cyBpcyBzbWFydCBlbm91Z2ggdG8gdXNlIDQ0MyBvciB0aGUgb25seSBleHBvc2VkIHBvcnQgb24gdGhlIHNlcnZpY2UKICAgICMgbm90ZTogdGhpcyByZXF1aXJlcyB0aGUgc2VydmljZSB0byBzZXJ2ZSBUTFMgZGlyZWN0bHkgKG5vdCB0aHJ1IGluZ3Jlc3MpCiAgICBzZXJ2aWNlOgogICAgICBuYW1lOiAiazhzLXNpZGVjYXItaW5qZWN0b3ItcHJvZCIKICAgICAgbmFtZXNwYWNlOiAia3ViZS1zeXN0ZW0iCiAgICAgIHBhdGg6ICIvbXV0YXRlIiAgICMgd2hhdCAvdXJsL3NsdWcgdG8gc2VuZCByZXF1ZXN0cyBhdAogICAgIyBTZWUgUkVBRE1FLm1kIGZvciBob3cgdGhpcyB3YXMgZ2VuZXJhdGVkIQogICAgY2FCdW5kbGU6ICIhISEgeW91ciBiYXNlNjQgZW5jb2RlZCBjYWJ1bmRsZSBoZXJlICEhISIK"
+        },
+        {
+          "filePath": "namespace.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogdjEKa2luZDogTmFtZXNwYWNlCm1ldGFkYXRhOgogIG5hbWU6ICJrdWJlLXN5c3RlbSIK"
+        },
+        {
+          "filePath": "service-monitor.yaml",
+          "fileContents": "IyBOT1RFOiB0aGlzIGRlc2NyaWJlcyBob3cgcHJvbWV0aGV1cyBmaW5kcyB5b3VyIFNlcnZpY2UgZm9yIHlvdXIgYXBwCmFwaVZlcnNpb246IG1vbml0b3JpbmcuY29yZW9zLmNvbS92MQpraW5kOiBTZXJ2aWNlTW9uaXRvcgptZXRhZGF0YToKICBuYW1lOiAiazhzLXNpZGVjYXItaW5qZWN0b3ItcHJvZCIKICBuYW1lc3BhY2U6ICJrdWJlLXN5c3RlbSIKICBsYWJlbHM6CiAgICBrOHMtYXBwOiAiazhzLXNpZGVjYXItaW5qZWN0b3IiCiAgICB0cmFjazogInByb2QiCnNwZWM6CiAgZW5kcG9pbnRzOgogIC0gaG9ub3JMYWJlbHM6IHRydWUKICAgIHBvcnQ6IGh0dHAtbWV0cmljcwogICAgcGF0aDogIi9tZXRyaWNzIgogICAgaW50ZXJ2YWw6IDMwcwogIGpvYkxhYmVsOiBrOHMtYXBwCiAgbmFtZXNwYWNlU2VsZWN0b3I6CiAgICBtYXRjaE5hbWVzOgogICAgLSBrdWJlLXN5c3RlbQogIHNlbGVjdG9yOgogICAgbWF0Y2hMYWJlbHM6CiAgICAgIGs4cy1hcHA6ICJrOHMtc2lkZWNhci1pbmplY3RvciIKICAgICAgdHJhY2s6ICJwcm9kIgo="
+        },
+        {
+          "filePath": "service.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogdjEKa2luZDogU2VydmljZQptZXRhZGF0YToKICBuYW1lOiBrOHMtc2lkZWNhci1pbmplY3Rvci1wcm9kCiAgbmFtZXNwYWNlOiBrdWJlLXN5c3RlbQogIGxhYmVsczoKICAgIGs4cy1hcHA6IGs4cy1zaWRlY2FyLWluamVjdG9yCiAgICB0cmFjazogcHJvZApzcGVjOgogIHR5cGU6IENsdXN0ZXJJUAogICMgTk9URShnYWJlKTogYmVjYXVzZSBvZiBob3cgTXV0YXRpbmdXZWJob29rQ29uZmlndXJhdGlvbnMgd29yaywgd2UgTVVTVCBzZXQgdGhpcyB0byBoYXZlIGEgY2x1c3RlcmlwCiAgIyB0byBhdm9pZCB0aGUgdGhpY2NjIGNoYWlucyBvZgogICMgVzA4MDIgMTQ6NTM6MzYuNzA0NTQ1ICAgICAgIDEgYWRtaXNzaW9uLmdvOjI1M10gRmFpbGVkIGNhbGxpbmcgd2ViaG9vaywgZmFpbGluZyBvcGVuIGluamVjdG9yLnR1bWJsci5jb206IGZhaWxlZCBjYWxsaW5nIGFkbWlzc2lvbiB3ZWJob29rICJpbmplY3Rvci50dW1ibHIuY29tIjogUG9zdCBodHRwczovL2s4cy1zaWRlY2FyLWluamVjdG9yLXByb2Quc3JlLXN5cy5zdmM6NDQzL211dGF0ZTogY2Fubm90IHJvdXRlIHRvIHNlcnZpY2Ugd2l0aCBDbHVzdGVySVAgIk5vbmUiCiAgIyBFMDgwMiAxNDo1MzozNi43MDQ2MTAgICAgICAgMSBhZG1pc3Npb24uZ286MjU0XSBmYWlsZWQgY2FsbGluZyBhZG1pc3Npb24gd2ViaG9vayAiaW5qZWN0b3IudHVtYmxyLmNvbSI6IFBvc3QgaHR0cHM6Ly9rOHMtc2lkZWNhci1pbmplY3Rvci1wcm9kLnNyZS1zeXMuc3ZjOjQ0My9tdXRhdGU6IGNhbm5vdCByb3V0ZSB0byBzZXJ2aWNlIHdpdGggQ2x1c3RlcklQICJOb25lIgogICNjbHVzdGVySVA6IE5vbmUKICBwb3J0czoKICAtIG5hbWU6IGh0dHBzCiAgICBwb3J0OiA0NDMKICAgIHRhcmdldFBvcnQ6IGh0dHBzCiAgICBwcm90b2NvbDogVENQCiAgLSBuYW1lOiBodHRwLW1ldHJpY3MKICAgIHBvcnQ6IDgwCiAgICB0YXJnZXRQb3J0OiBodHRwLW1ldHJpY3MKICAgIHByb3RvY29sOiBUQ1AKICBzZWxlY3RvcjoKICAgIGs4cy1hcHA6IGs4cy1zaWRlY2FyLWluamVjdG9yCiAgICB0cmFjazogcHJvZAo="
+        },
+        {
+          "filePath": "serviceaccount.yaml",
+          "fileContents": "YXBpVmVyc2lvbjogdjEKa2luZDogU2VydmljZUFjY291bnQKbWV0YWRhdGE6CiAgbmFtZTogazhzLXNpZGVjYXItaW5qZWN0b3IKICBuYW1lc3BhY2U6IGt1YmUtc3lzdGVtCiAgbGFiZWxzOgogICAga3ViZXJuZXRlcy5pby9jbHVzdGVyLXNlcnZpY2U6ICJ0cnVlIgogICAgYWRkb25tYW5hZ2VyLmt1YmVybmV0ZXMuaW8vbW9kZTogUmVjb25jaWxlCg=="
+        }
+      ]
+    },
+    "shipVersion": {
+      "version": "0.47.3",
+      "buildTime": "2019-06-28T00:23:29Z",
+      "dependencies": {
+        "helm": "v2.14.1",
+        "kustomize": "v2.0.3",
+        "terraform": "v0.11.14"
+      },
+      "go": {
+        "version": "go1.12.6",
+        "compiler": "gc",
+        "os": "darwin",
+        "arch": "amd64"
+      }
+    },
+    "contentSHA": "b2da9905d80df939fe5c2061edfd28f8d0d7bef4df4c2c3c95813e4c67269e1f",
+    "lifecycle": {
+      "stepsCompleted": {
+        "kustomize": true,
+        "kustomize-intro": true,
+        "outro": true,
+        "render": true
+      }
+    }
+  }
+}
